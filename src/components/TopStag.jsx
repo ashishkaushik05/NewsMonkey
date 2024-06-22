@@ -12,10 +12,10 @@ function TopStag() {
   <h3 className='font-bold text-sm font-mono ml-2 mt-2 !text-red-50'>Stay updated with NewsLog!</h3>
   <h3 className='font-bold text-sm font-mono ml-2 mt-2 !text-red-50'>Fearless, Independant, Reader-Funded!</h3>
     {authStatus ?
-      (<Link to="/login">
+      <Link to="/login">
         <LogoutBtn />
-          </Link>) : 
-       (<div className='flex flex-row gap-3'>
+          </Link> : 
+       <div className='flex flex-row gap-3'>
         <Link to="/login">
         <Button 
           className='rounded-full text-white-A700 font-bold hover:variant-outline' 
@@ -32,7 +32,7 @@ function TopStag() {
           color="red_50">Signup</Button>
           </Link>
 
-        </div>)}
+        </div>}
 </div>
 <div className="my-2 border-y-4 border-black w-full"></div>
 
