@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import NewsItem from './NewsItem';
-import Spinner from './Spinner'
+import Loader from './Loader/Loader';
 import PropTypes from 'prop-types'
 
 export class News extends Component {
   static defaultProps = {
     country : 'in',
-    pageSize : 8,
+    pageSize : 5,
     category: 'general'
   }
 
@@ -15,8 +15,6 @@ export class News extends Component {
     pageSize: PropTypes.number,
     category: PropTypes.string
   }
-
-
 
   constructor(){
     super();
@@ -66,23 +64,36 @@ export class News extends Component {
     console.log("render");
     return (
       <div className = "container my-3">
-        <h1 className = "text-center my-5">NewsMonkey - Top Headlines</h1>
+
         <div className = "text-center">
-          {this.state.loading && <Spinner classname = "text-center"/>}
-          </div>
+          {this.state.loading && <Loader />}
+        </div>
+
         <div className= "row">
         {!this.state.loading && this.state.articles.map((element)=>{
           return <div className="col md-4" key={element.url}>
-                 <NewsItem title = {element.title?element.title:""} description = {element.description?element.description:""} 
-                 imageUrl = {element.urlToImage} newsUrl = {element.url}/>
+                 <NewsItem 
+                 title = {element.title?element.title:""} 
+                 description = {element.description?element.description:""} 
+                 imageUrl = {element.urlToImage} 
+                 newsUrl = {element.url}/>
                  </div>
               })}
         </div>
      
-     <div className="container d-flex justify-content-between">
-          <button disabled={this.state.page<=1} type="button" className="btn btn-dark" onClick={this.handlePrevClick}> &larr; Previous </button>
-          <button disabled = {this.state.page + 1 > Math.ceil(this.state.totalResults/this.props.pageSize)} type="button" className="btn btn-dark" onClick={this.handleNextClick}> Next &rarr; </button>
-     </div>
+        <div className="container d-flex justify-content-between">
+              <button 
+              disabled={this.state.page<=1} 
+              type="button" 
+              className="btn btn-dark" 
+              onClick={this.handlePrevClick}> &larr; Previous </button>
+              <button 
+              disabled = {this.state.page + 1 > Math.ceil(this.state.totalResults/this.props.pageSize)} 
+              type="button" 
+              className="btn btn-dark" 
+              onClick={this.handleNextClick}> Next &rarr; </button>
+        </div>
+
      </div>
     )
   }

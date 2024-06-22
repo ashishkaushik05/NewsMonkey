@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export class NewsItem extends Component {
-  render() {
-    let {title,description,imageUrl,newsUrl} = this.props;  
-    return (
+function NewsItem({title,description,imageUrl,newsUrl}) {
+  return (
       <div className = "my-3">
         <div className="card">
             <img src={!imageUrl?"https://images.moneycontrol.com/static-mcnews/2021/06/2021-06-10T144821Z_1_LYNXNPEH590RY_RTROPTP_4_IMF-WORLDBANK-OUTLOOK-653x435.jpg":imageUrl} className="card-img-top" alt="Unknown image"/>
@@ -15,7 +13,6 @@ export class NewsItem extends Component {
         </div>
       </div>
     )
-  }
 }
 
 export default NewsItem
